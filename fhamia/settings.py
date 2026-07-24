@@ -119,22 +119,31 @@ WSGI_APPLICATION = 'fhamia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-print(f"DEBUG env DB_HOST={os.environ.get('DB_HOST')!r} DB_PORT={os.environ.get('DB_PORT')!r} DB_NAME={os.environ.get('DB_NAME')!r} DB_USER={os.environ.get('DB_USER')!r}", flush=True)
+# En prod (Render), DATABASE_URL est fourni automatiquement par le plugin
+# PostgreSQL et prend le dessus sur la config MySQL locale ci-dessous.
+DATABASE_URL = os.environ.get('DATABASE_URL', '')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME', 'fhamia'),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('DB_PASS', ''),
-        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DB_PORT', '3308'),
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', default_storage_engine='INNODB'",
+if DATABASE_URL:
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME', 'fhamia'),
+            'USER': os.environ.get('DB_USER', 'root'),
+            'PASSWORD': os.environ.get('DB_PASS', ''),
+            'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+            'PORT': os.environ.get('DB_PORT', '3308'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES', default_storage_engine='INNODB'",
+            },
         },
     }
-}
 
 
 # Password validation
