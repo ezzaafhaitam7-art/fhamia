@@ -1,0 +1,595 @@
+:root {
+  --bg: #0a0d16;
+  --bg-soft: #0d1120;
+  --panel: #0f1424;
+  --panel-border: #232a3d;
+  --text: #cbd3e1;
+  --text-dim: #8890a3;
+  --text-h: #eef1f8;
+  --cyan: #22e0f0;
+  --cyan-dim: rgba(34, 224, 240, 0.15);
+  --purple: #a855f7;
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  --danger-border: rgba(239, 68, 68, 0.35);
+  --font: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-accent) !important;
+  box-shadow: 0 10px 30px -8px var(--card-accent);
+}
+
+.tutor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  display: inline-block;
+  animation: tutor-blink 1s infinite ease-in-out;
+}
+
+@keyframes tutor-blink {
+  0%, 80%, 100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.scene-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.profile-field {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.profile-field:focus {
+  border-color: #1a56db !important;
+  box-shadow: 0 0 0 3.5px rgba(26, 86, 219, 0.12);
+  background: #fff !important;
+}
+
+.profile-tab-btn:hover {
+  background: #f2f6fe;
+}
+
+.back-btn {
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.back-btn:hover {
+  background: #EBF5FF;
+  border-color: #1A56DB;
+  color: #1A56DB;
+  transform: translateX(-2px);
+}
+
+.admin-sidebar-link {
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, padding-left 0.22s ease;
+}
+
+.admin-sidebar-link:hover {
+  background: #eef4ff;
+  color: #1a56db;
+  transform: translateX(3px);
+}
+
+.admin-sidebar-link:hover svg {
+  color: #1a56db;
+  stroke: #1a56db;
+}
+
+.admin-stat-card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 30px -10px rgba(26, 86, 219, 0.25);
+  border-color: #1a56db;
+}
+
+.admin-stat-icon {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.admin-stat-card:hover .admin-stat-icon {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px rgba(26, 86, 219, 0.15), 0 0 0 2px #1a56db inset;
+}
+
+/* ---------- Landing page (light, Coursera-inspired) ---------- */
+
+.landing-cta-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0056d2 0%, #0056d2 50%, #3b7ef0 100%);
+  background-size: 220% 100%;
+  background-position: 0% 0%;
+  transition: background-position 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.landing-cta-primary::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 65%);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.landing-cta-primary:hover {
+  background-position: 100% 0%;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 18px 36px -10px rgba(0, 86, 210, 0.6), 0 0 0 4px rgba(0, 86, 210, 0.08);
+}
+
+.landing-cta-primary:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.landing-cta-outline {
+  position: relative;
+  color: #0056d2;
+  transition: color 0.4s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.landing-cta-outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #0056d2;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.landing-cta-outline:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.landing-cta-outline:hover::before {
+  transform: scaleX(1);
+}
+
+.landing-nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.landing-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #0056d2;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-nav-link:hover {
+  color: #0056d2 !important;
+}
+
+.landing-nav-link:hover::after {
+  width: 100%;
+}
+
+.landing-domain-badge {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.landing-domain-badge:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 16px 30px -12px rgba(0, 86, 210, 0.35);
+  border-color: #0056d2 !important;
+}
+
+.landing-domain-badge:hover .landing-domain-icon {
+  background: #0056d2 !important;
+  transform: rotate(-6deg) scale(1.1);
+}
+
+.landing-domain-badge:hover .landing-domain-icon svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+.landing-domain-icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+}
+
+.landing-why-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.landing-why-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 22px 40px -16px rgba(0, 86, 210, 0.28);
+  border-color: #0056d2 !important;
+}
+
+.landing-why-card:hover .landing-why-icon {
+  transform: scale(1.15) rotate(6deg);
+  background: #0056d2 !important;
+}
+
+.landing-why-card:hover .landing-why-icon svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+.landing-why-icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+}
+
+.landing-course-card {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.35s ease;
+}
+
+.landing-course-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 26px 48px -18px rgba(0, 0, 0, 0.22);
+  border-color: #0056d2 !important;
+}
+
+.landing-course-arrow {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.landing-course-card:hover .landing-course-arrow {
+  transform: translateX(6px);
+}
+
+.landing-course-img-wrap {
+  overflow: hidden;
+}
+
+.landing-course-img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
+}
+
+.landing-course-card:hover .landing-course-img {
+  transform: scale(1.12) rotate(0.5deg);
+}
+
+.landing-faq-item {
+  transition: background 0.3s ease, padding 0.3s ease;
+  border-radius: 10px;
+}
+
+.landing-faq-item:hover {
+  background: #eef3fd;
+}
+
+.landing-faq-item:hover .landing-faq-q {
+  color: #0056d2 !important;
+}
+
+.landing-hero-photo-wrap {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.4s ease;
+  cursor: pointer;
+}
+
+.landing-hero-photo-wrap:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 34px 60px -18px rgba(0, 86, 210, 0.5);
+  border-color: #0056d2;
+}
+
+.landing-shape-a {
+  animation: landing-float-a 7s ease-in-out infinite;
+}
+
+.landing-shape-b {
+  animation: landing-float-b 8s ease-in-out infinite;
+}
+
+@keyframes landing-float-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(6px, -10px) rotate(4deg); }
+}
+
+@keyframes landing-float-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-8px, 8px) rotate(-3deg); }
+}
+
+.register-hero-float {
+  animation: register-hero-bob 5s ease-in-out infinite;
+}
+
+@keyframes register-hero-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+
+.landing-gradient-text {
+  background: linear-gradient(90deg, #0056d2, #6a3df0 60%, #d63bb0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.landing-step-item {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-step-item:hover {
+  transform: translateY(-6px);
+}
+
+.landing-step-item:hover .landing-step-num {
+  background: #0056d2;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.landing-step-num {
+  color: #0056d2;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, color 0.3s ease;
+}
+
+.landing-step-connector::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 20px;
+  top: 50%;
+  height: 3px;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  background: linear-gradient(90deg, #0056d2 0%, #7db3ff 25%, #0056d2 50%, #7db3ff 75%, #0056d2 100%);
+  background-size: 200% 100%;
+  animation: landing-flow 3s linear infinite;
+}
+
+@keyframes landing-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+.landing-step-arrowhead {
+  animation: landing-arrow-nudge 1.6s ease-in-out infinite;
+}
+
+@keyframes landing-arrow-nudge {
+  0%, 100% {
+    transform: translate(0, -50%);
+  }
+  50% {
+    transform: translate(4px, -50%);
+  }
+}
+
+/* ---------- Hero background: gradients, grid, particles ---------- */
+
+.landing-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing-hero-grid {
+  position: absolute;
+  inset: -10% -10%;
+  background-image: linear-gradient(rgba(0, 86, 210, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 86, 210, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 30%, #000 40%, transparent 85%);
+}
+
+.landing-hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  animation: landing-blob-drift 12s ease-in-out infinite;
+}
+
+.landing-hero-blob.b1 {
+  width: 380px;
+  height: 380px;
+  top: -120px;
+  right: -60px;
+  background: radial-gradient(circle, #bfd9ff 0%, transparent 70%);
+}
+
+.landing-hero-blob.b2 {
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  left: 10%;
+  background: radial-gradient(circle, #dbeafe 0%, transparent 70%);
+  animation-duration: 15s;
+  animation-delay: -4s;
+}
+
+@keyframes landing-blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -16px) scale(1.06); }
+}
+
+.landing-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #0056d2;
+  opacity: 0.25;
+  animation: landing-particle-rise 9s linear infinite;
+}
+
+@keyframes landing-particle-rise {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 0.35; }
+  85% { opacity: 0.2; }
+  100% { transform: translateY(-140px); opacity: 0; }
+}
+
+/* ---------- Hero floating feature chips ---------- */
+
+.landing-hero-stage {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 460px;
+}
+
+.landing-hero-laptop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  box-shadow: 0 30px 60px -20px rgba(0, 86, 210, 0.35);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.landing-float-chip {
+  position: absolute;
+  z-index: 3;
+  animation: landing-chip-float 5s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.landing-float-chip:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 20px 34px -12px rgba(0, 86, 210, 0.4);
+}
+
+@keyframes landing-chip-float {
+  0%, 100% { transform: translateY(0) rotate(var(--chip-rot, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--chip-rot, 0deg)); }
+}
+
+/* ---------- Mockup UI cards (real feature previews, no stock photos) ---------- */
+
+.landing-mockup {
+  background: #f8fafd;
+  border: 1px solid #e3e6ea;
+}
+
+.landing-mockup-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  background: #d3d9e0;
+}
+
+.landing-terminal {
+  background: #0d1120;
+  color: #4ade80;
+  font-family: var(--mono);
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.landing-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Generic hover transitions (light theme pages) ---------- */
+
+.btn-outline-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.btn-outline-hover:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -10px rgba(26, 86, 219, 0.4);
+  border-color: #1a56db !important;
+  color: #1a56db !important;
+}
+
+.icon-btn-hover {
+  transition: background 0.2s ease, transform 0.2s ease;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.icon-btn-hover:hover:not(:disabled) {
+  background: #ebf5fb;
+  transform: scale(1.1);
+}
+
+.chip-hover {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.chip-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px -6px rgba(26, 86, 219, 0.35);
+}

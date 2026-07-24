@@ -1,0 +1,330 @@
+{
+  "Linux & Terminal": [
+    {
+      "q": "Quel est le rôle principal d'un système d'exploitation Linux ?",
+      "a": "Gérer les ressources matérielles et exécuter les programmes"
+    },
+    {
+      "q": "Quelle commande permet d'afficher le contenu d'une archive TAR sans l'extraire ?",
+      "a": "tar tvf"
+    },
+    {
+      "q": "Quelle commande permet de créer un nouvel utilisateur sous Linux ?",
+      "a": "useradd"
+    },
+    {
+      "q": "Quelle commande permet de modifier le mot de passe d'un utilisateur ?",
+      "a": "passwd"
+    },
+    {
+      "q": "Quel fichier contient les informations des utilisateurs ?",
+      "a": "/etc/passwd"
+    },
+    {
+      "q": "Quel fichier contient les mots de passe chiffrés ?",
+      "a": "/etc/shadow"
+    },
+    {
+      "q": "Quel est l'UID de l'utilisateur root ?",
+      "a": "0"
+    },
+    {
+      "q": "Dans quel répertoire se trouvent généralement les dossiers personnels des utilisateurs ?",
+      "a": "/home"
+    },
+    {
+      "q": "Quelle commande permet de connaître les groupes d'un utilisateur ?",
+      "a": "groups"
+    },
+    {
+      "q": "Quel répertoire contient les fichiers de configuration du système ?",
+      "a": "/etc"
+    },
+    {
+      "q": "Quelle commande permet de changer le propriétaire d'un fichier ?",
+      "a": "chown"
+    },
+    {
+      "q": "Quelle commande permet de modifier les permissions d'un fichier ?",
+      "a": "chmod"
+    },
+    {
+      "q": "Que signifie le droit \"r\" ?",
+      "a": "Lecture"
+    },
+    {
+      "q": "Que signifie le droit \"w\" ?",
+      "a": "Écriture"
+    },
+    {
+      "q": "Que signifie le droit \"x\" ?",
+      "a": "Exécution"
+    },
+    {
+      "q": "Quelle commande affiche le chemin du répertoire courant ?",
+      "a": "pwd"
+    },
+    {
+      "q": "Quelle commande affiche le contenu d'un répertoire ?",
+      "a": "ls"
+    },
+    {
+      "q": "Quel éditeur de texte est considéré comme indispensable pour un administrateur Linux ?",
+      "a": "vi"
+    },
+    {
+      "q": "Quelle commande permet de supprimer un utilisateur ?",
+      "a": "userdel"
+    },
+    {
+      "q": "Quel est le rôle de la commande umask ?",
+      "a": "Définir les permissions par défaut des nouveaux fichiers et répertoires"
+    }
+  ],
+  "Réseaux & Protocoles": [
+    {
+      "q": "Qu'est-ce qu'un réseau informatique ?",
+      "a": "Un ensemble d'ordinateurs et de périphériques reliés entre eux pour échanger des données"
+    },
+    {
+      "q": "Quel est le principal objectif d'un réseau informatique ?",
+      "a": "Partager des ressources et échanger des informations"
+    },
+    {
+      "q": "Que signifie le sigle LAN ?",
+      "a": "Local Area Network"
+    },
+    {
+      "q": "Que signifie le sigle WAN ?",
+      "a": "Wide Area Network"
+    },
+    {
+      "q": "Quel équipement permet de connecter plusieurs ordinateurs dans un même réseau local ?",
+      "a": "Switch (commutateur)"
+    },
+    {
+      "q": "Quel équipement permet de relier plusieurs réseaux différents ?",
+      "a": "Routeur"
+    },
+    {
+      "q": "Que signifie le sigle IP ?",
+      "a": "Internet Protocol"
+    },
+    {
+      "q": "À quoi sert une adresse IP ?",
+      "a": "Identifier un appareil sur le réseau"
+    },
+    {
+      "q": "Quel protocole est utilisé pour afficher des pages Web ?",
+      "a": "HTTP"
+    },
+    {
+      "q": "Quel protocole est utilisé pour transférer des fichiers ?",
+      "a": "FTP"
+    },
+    {
+      "q": "Quel protocole permet de traduire un nom de domaine en adresse IP ?",
+      "a": "DNS"
+    },
+    {
+      "q": "Quel protocole attribue automatiquement une adresse IP aux ordinateurs ?",
+      "a": "DHCP"
+    },
+    {
+      "q": "Quel protocole garantit une transmission fiable des données ?",
+      "a": "TCP"
+    },
+    {
+      "q": "Quel protocole est plus rapide mais ne garantit pas la livraison des données ?",
+      "a": "UDP"
+    },
+    {
+      "q": "Combien de couches comporte le modèle OSI ?",
+      "a": "7"
+    },
+    {
+      "q": "À quelle couche du modèle OSI appartient le protocole IP ?",
+      "a": "Réseau"
+    },
+    {
+      "q": "Quel est le rôle principal d'un pare-feu (Firewall) ?",
+      "a": "Protéger le réseau contre les accès non autorisés"
+    },
+    {
+      "q": "Qu'est-ce qu'un serveur ?",
+      "a": "Un ordinateur qui fournit des services à d'autres ordinateurs"
+    },
+    {
+      "q": "Quel est le rôle d'un client dans un réseau ?",
+      "a": "Demander des services à un serveur"
+    },
+    {
+      "q": "Pourquoi la sécurité est-elle essentielle dans un réseau informatique ?",
+      "a": "Pour protéger les données, les utilisateurs et les équipements contre les attaques"
+    }
+  ],
+  "Bases de Données": [
+    {
+      "q": "Qu'est-ce qu'une base de données ?",
+      "a": "Un ensemble organisé de données permettant leur stockage et leur gestion"
+    },
+    {
+      "q": "Que signifie le sigle SGBD ?",
+      "a": "Système de Gestion de Bases de Données"
+    },
+    {
+      "q": "Quel est le principal rôle d'un SGBD ?",
+      "a": "Gérer les bases de données et les accès aux données"
+    },
+    {
+      "q": "Quel langage est principalement utilisé pour interroger une base de données relationnelle ?",
+      "a": "SQL"
+    },
+    {
+      "q": "Que signifie SQL ?",
+      "a": "Structured Query Language"
+    },
+    {
+      "q": "Quelle commande SQL permet de récupérer des données ?",
+      "a": "SELECT"
+    },
+    {
+      "q": "Quelle commande SQL permet d'ajouter un nouvel enregistrement ?",
+      "a": "INSERT INTO"
+    },
+    {
+      "q": "Quelle commande SQL permet de modifier des données existantes ?",
+      "a": "UPDATE"
+    },
+    {
+      "q": "Quelle commande SQL permet de supprimer des enregistrements ?",
+      "a": "DELETE"
+    },
+    {
+      "q": "Quelle commande SQL permet de créer une nouvelle table ?",
+      "a": "CREATE TABLE"
+    },
+    {
+      "q": "Qu'est-ce qu'une clé primaire ?",
+      "a": "Un identifiant unique de chaque enregistrement"
+    },
+    {
+      "q": "Une clé primaire peut-elle contenir des valeurs NULL ?",
+      "a": "Non"
+    },
+    {
+      "q": "À quoi sert une clé étrangère ?",
+      "a": "À relier deux tables entre elles"
+    },
+    {
+      "q": "Quelle propriété garantit qu'une clé primaire est unique ?",
+      "a": "Unicité"
+    },
+    {
+      "q": "Qu'est-ce qu'une relation \"Un à Plusieurs\" (1:N) ?",
+      "a": "Un enregistrement est lié à plusieurs enregistrements d'une autre table"
+    },
+    {
+      "q": "Quel symbole est utilisé pour sélectionner toutes les colonnes ?",
+      "a": "*"
+    },
+    {
+      "q": "Quelle clause permet de filtrer les résultats d'une requête ?",
+      "a": "WHERE"
+    },
+    {
+      "q": "Quelle clause permet de trier les résultats ?",
+      "a": "ORDER BY"
+    },
+    {
+      "q": "Qu'est-ce que la redondance des données ?",
+      "a": "La répétition inutile des mêmes informations"
+    },
+    {
+      "q": "Pourquoi normalise-t-on une base de données ?",
+      "a": "Pour réduire la redondance et améliorer la cohérence des données"
+    }
+  ],
+  "Intelligence Artificielle": [
+    {
+      "q": "Qu'est-ce que l'Intelligence Artificielle (IA) ?",
+      "a": "Une discipline informatique qui vise à créer des systèmes capables d'imiter certaines capacités humaines"
+    },
+    {
+      "q": "Quel est l'objectif principal de l'IA ?",
+      "a": "Permettre aux machines d'accomplir des tâches nécessitant normalement l'intelligence humaine"
+    },
+    {
+      "q": "Lequel des domaines suivants fait partie de l'IA ?",
+      "a": "Traitement du langage naturel (NLP)"
+    },
+    {
+      "q": "Qu'est-ce que le Machine Learning ?",
+      "a": "Une méthode permettant aux machines d'apprendre à partir des données sans être explicitement programmées"
+    },
+    {
+      "q": "Le Deep Learning est basé principalement sur :",
+      "a": "Les réseaux de neurones artificiels"
+    },
+    {
+      "q": "Le test de Turing sert à :",
+      "a": "Évaluer si une machine peut imiter le comportement intelligent d'un humain"
+    },
+    {
+      "q": "Qui est considéré comme le père du test de Turing ?",
+      "a": "Alan Turing"
+    },
+    {
+      "q": "Lequel est un exemple d'application de l'IA ?",
+      "a": "Les assistants vocaux (Siri, Alexa, Google Assistant)"
+    },
+    {
+      "q": "Qu'est-ce qu'un agent intelligent ?",
+      "a": "Un système capable de percevoir son environnement et d'agir pour atteindre un objectif"
+    },
+    {
+      "q": "Quelle est la matière première du Machine Learning ?",
+      "a": "Les données"
+    },
+    {
+      "q": "Lequel est un langage très utilisé en Intelligence Artificielle ?",
+      "a": "Python"
+    },
+    {
+      "q": "Que signifie NLP ?",
+      "a": "Natural Language Processing"
+    },
+    {
+      "q": "Quel type d'apprentissage utilise des données étiquetées ?",
+      "a": "Apprentissage supervisé"
+    },
+    {
+      "q": "Quel type d'apprentissage recherche des groupes dans les données sans étiquettes ?",
+      "a": "Non supervisé"
+    },
+    {
+      "q": "L'apprentissage par renforcement repose principalement sur :",
+      "a": "Des récompenses et des pénalités"
+    },
+    {
+      "q": "Lequel est un exemple de réseau de neurones ?",
+      "a": "CNN (Convolutional Neural Network)"
+    },
+    {
+      "q": "Quel est l'un des principaux défis de l'IA ?",
+      "a": "La qualité des données"
+    },
+    {
+      "q": "Quel domaine de l'IA permet à un ordinateur de reconnaître des objets dans une image ?",
+      "a": "Vision par ordinateur (Computer Vision)"
+    },
+    {
+      "q": "Quel est l'avantage principal de l'IA ?",
+      "a": "Automatiser des tâches complexes et améliorer la prise de décision"
+    },
+    {
+      "q": "Quel est le rôle d'un modèle d'IA après son entraînement ?",
+      "a": "Faire des prédictions ou prendre des décisions à partir de nouvelles données"
+    }
+  ]
+}

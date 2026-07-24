@@ -1,0 +1,267 @@
+import { TerminalSquare, Network, Database, Brain } from "lucide-react";
+
+export const domainMeta = {
+  linux: { title: "Linux & Terminal", accent: "cyan", book: "/support-de-cours-linux.pdf", icon: TerminalSquare },
+  reseaux: { title: "Réseaux & Protocoles", accent: "purple", book: "/reseaulivre.pdf", icon: Network },
+  bdd: { title: "Bases de Données", accent: "cyan", book: "/basedonnees.pdf", icon: Database },
+  ia: { title: "Intelligence Artificielle", accent: "purple", book: "/ailivre.pdf", icon: Brain },
+};
+
+export const domainCourses = {
+  linux: [
+    {
+      id: "shell-bases",
+      title: "Introduction au Shell Unix",
+      description:
+        "Comprendre l'interpréteur de commandes, la navigation dans l'arborescence et les commandes essentielles.",
+      instructor: "Pr. Karim Sabri",
+      level: "Débutant",
+      duration: "3 semaines",
+      rating: 4.7,
+      students: 5230,
+      skills: ["Ligne de commande", "Arborescence Unix", "Commandes de base", "Redirections"],
+      tools: ["Bash", "Terminal", "Ubuntu"],
+      pages: [
+        "Chapitre 1 — Le shell est l'interpréteur qui traduit vos commandes texte en actions système. Il existe plusieurs shells (sh, bash, zsh), bash étant le plus répandu sur les distributions Linux.",
+        "Chapitre 1.1 — L'arborescence Unix commence à la racine « / ». Chaque dossier a un rôle précis : /home pour les utilisateurs, /etc pour la configuration, /var pour les données variables.",
+        "Chapitre 1.2 — Les commandes de navigation : pwd affiche le dossier courant, cd permet de se déplacer, ls liste le contenu d'un répertoire avec de nombreuses options (-l, -a, -h).",
+        "Chapitre 1.3 — La manipulation de fichiers : cp copie, mv déplace ou renomme, rm supprime. Toujours vérifier le chemin avant une suppression, Unix ne propose pas de corbeille par défaut.",
+        "Chapitre 1.4 — Les redirections permettent de rediriger la sortie d'une commande : > écrase un fichier, >> ajoute à la suite, et le pipe | enchaîne plusieurs commandes entre elles.",
+        "Chapitre 1.5 — Exercice pratique : créez une arborescence de projet, déplacez des fichiers, et combinez ls, grep et wc via des pipes pour compter des lignes correspondant à un motif.",
+      ],
+    },
+    {
+      id: "permissions",
+      title: "Permissions et Gestion des Utilisateurs",
+      description:
+        "Maîtriser le modèle de permissions Unix (rwx), les utilisateurs, groupes et la commande chmod/chown.",
+      instructor: "Pr. Karim Sabri",
+      level: "Intermédiaire",
+      duration: "2 semaines",
+      rating: 4.6,
+      students: 3120,
+      skills: ["Permissions rwx", "Utilisateurs & groupes", "chmod / chown", "sudo"],
+      tools: ["Bash", "Linux"],
+      pages: [
+        "Chapitre 2 — Chaque fichier Unix possède un propriétaire, un groupe et des permissions de lecture (r), écriture (w) et exécution (x) pour trois catégories : utilisateur, groupe, autres.",
+        "Chapitre 2.1 — La commande chmod modifie les permissions, en notation symbolique (u+x) ou numérique (755). La commande chown change le propriétaire d'un fichier.",
+        "Chapitre 2.2 — Les groupes permettent de partager des droits entre plusieurs utilisateurs sans dupliquer les permissions individuelles.",
+        "Chapitre 2.3 — sudo autorise l'exécution ponctuelle de commandes avec les privilèges root, en laissant une trace dans les journaux systèmes pour l'audit.",
+        "Chapitre 2.4 — Exercice pratique : créez un groupe « devs », ajoutez deux utilisateurs, et configurez un dossier partagé accessible en lecture/écriture uniquement par ce groupe.",
+      ],
+    },
+    {
+      id: "bash-scripting",
+      title: "Scripting Bash pour l'Automatisation",
+      description:
+        "Écrire des scripts Bash robustes : variables, conditions, boucles et automatisation de tâches système.",
+      instructor: "Pr. Karim Sabri",
+      level: "Avancé",
+      duration: "4 semaines",
+      rating: 4.8,
+      students: 2410,
+      skills: ["Scripting Bash", "Variables & boucles", "Cron", "Automatisation"],
+      tools: ["Bash", "Cron", "Linux"],
+      pages: [
+        "Chapitre 3 — Un script Bash commence par un shebang #!/bin/bash. Les variables se déclarent sans espace autour du signe égal et s'appellent avec un $.",
+        "Chapitre 3.1 — Les structures conditionnelles if/then/else et les boucles for/while permettent d'automatiser des traitements répétitifs sur des fichiers ou des listes.",
+        "Chapitre 3.2 — Les fonctions Bash regroupent du code réutilisable. Elles reçoivent des arguments positionnels ($1, $2...) comme un script classique.",
+        "Chapitre 3.3 — Cron permet de planifier l'exécution automatique de scripts à intervalles réguliers, via une syntaxe de 5 champs représentant minute, heure, jour, mois, jour de semaine.",
+        "Chapitre 3.4 — Exercice pratique : écrivez un script qui sauvegarde un dossier chaque nuit à 2h du matin et purge les sauvegardes de plus de 7 jours.",
+      ],
+    },
+  ],
+  reseaux: [
+    {
+      id: "modele-osi",
+      title: "Le Modèle OSI et TCP/IP",
+      description:
+        "Comprendre les 7 couches du modèle OSI et leur correspondance avec la pile TCP/IP utilisée sur Internet.",
+      instructor: "Dr. Nadia Faraji",
+      level: "Débutant",
+      duration: "2 semaines",
+      rating: 4.5,
+      students: 4110,
+      skills: ["Modèle OSI", "Encapsulation", "Pile TCP/IP"],
+      tools: ["Wireshark", "Packet Tracer"],
+      pages: [
+        "Chapitre 1 — Le modèle OSI découpe la communication réseau en 7 couches, de la couche physique (câbles, signaux) à la couche application (HTTP, DNS).",
+        "Chapitre 1.1 — Chaque couche encapsule les données de la couche supérieure avec son propre en-tête, formant des trames, paquets puis segments.",
+        "Chapitre 1.2 — Le modèle TCP/IP simplifie l'OSI en 4 couches : Accès réseau, Internet, Transport, Application — c'est celui réellement utilisé sur Internet.",
+        "Chapitre 1.3 — La couche Transport distingue TCP (fiable, avec accusés de réception) et UDP (rapide, sans garantie de livraison).",
+        "Chapitre 1.4 — Exercice pratique : capturez du trafic HTTP avec Wireshark et identifiez les couches successives d'un paquet.",
+      ],
+    },
+    {
+      id: "adressage-ip",
+      title: "Adressage IP et Sous-réseaux",
+      description:
+        "Calculer des sous-réseaux, comprendre le masque, le CIDR et la répartition des adresses IPv4.",
+      instructor: "Dr. Nadia Faraji",
+      level: "Intermédiaire",
+      duration: "3 semaines",
+      rating: 4.6,
+      students: 2870,
+      skills: ["Adressage IPv4", "Masques de sous-réseau", "Notation CIDR"],
+      tools: ["Packet Tracer", "Subnet Calculator"],
+      pages: [
+        "Chapitre 2 — Une adresse IPv4 est composée de 32 bits répartis en 4 octets. Elle identifie de façon unique un hôte sur un réseau.",
+        "Chapitre 2.1 — Le masque de sous-réseau détermine la partie réseau et la partie hôte d'une adresse, permettant de segmenter un réseau en sous-réseaux plus petits.",
+        "Chapitre 2.2 — La notation CIDR (ex: /24) remplace le masque décimal et facilite le calcul rapide du nombre d'adresses disponibles.",
+        "Chapitre 2.3 — Le sous-réseautage (subnetting) permet d'optimiser l'utilisation des adresses IP et d'isoler le trafic entre différents services.",
+        "Chapitre 2.4 — Exercice pratique : divisez le réseau 192.168.1.0/24 en 4 sous-réseaux égaux et déterminez leurs plages d'adresses utilisables.",
+      ],
+    },
+    {
+      id: "securite-reseau",
+      title: "Sécurité Réseau et Pare-feu",
+      description:
+        "Protéger une infrastructure réseau : pare-feu, VPN, segmentation et bonnes pratiques de sécurité.",
+      instructor: "Dr. Nadia Faraji",
+      level: "Avancé",
+      duration: "4 semaines",
+      rating: 4.7,
+      students: 1980,
+      skills: ["Pare-feu", "VPN", "Segmentation réseau"],
+      tools: ["pfSense", "Wireshark"],
+      pages: [
+        "Chapitre 3 — Un pare-feu filtre le trafic entrant et sortant selon des règles définies, basées sur les adresses IP, ports et protocoles.",
+        "Chapitre 3.1 — Un VPN chiffre les communications entre deux points, permettant un accès sécurisé à un réseau privé depuis l'extérieur.",
+        "Chapitre 3.2 — La segmentation réseau isole les systèmes critiques dans des VLAN distincts, réduisant la surface d'attaque en cas d'intrusion.",
+        "Chapitre 3.3 — Exercice pratique : configurez des règles de pare-feu de base pour n'autoriser que le trafic HTTP, HTTPS et SSH sur un serveur.",
+      ],
+    },
+  ],
+  bdd: [
+    {
+      id: "modele-relationnel",
+      title: "Le Modèle Relationnel",
+      description:
+        "Comprendre les fondations des bases relationnelles : tables, clés primaires, clés étrangères et intégrité.",
+      instructor: "Dr. Salma Benjelloun",
+      level: "Débutant",
+      duration: "2 semaines",
+      rating: 4.8,
+      students: 6340,
+      skills: ["Modèle relationnel", "Clés primaires", "Clés étrangères", "Intégrité référentielle"],
+      tools: ["PostgreSQL", "MySQL"],
+      pages: [
+        "Chapitre 1 — Le modèle relationnel organise les données en tables (relations), composées de lignes (tuples) et de colonnes (attributs).",
+        "Chapitre 1.1 — La clé primaire identifie de façon unique chaque ligne d'une table. Elle ne peut jamais être nulle ni dupliquée.",
+        "Chapitre 1.2 — Une clé étrangère référence la clé primaire d'une autre table, matérialisant les relations entre entités.",
+        "Chapitre 1.3 — L'intégrité référentielle garantit qu'une clé étrangère pointe toujours vers une ligne existante, évitant les données orphelines.",
+        "Chapitre 1.4 — Exercice pratique : modélisez une base « Bibliothèque » avec les tables Livres, Auteurs et Emprunts reliées par des clés étrangères.",
+      ],
+    },
+    {
+      id: "sql-fondamentaux",
+      title: "SQL : Requêtes et Jointures",
+      description:
+        "Écrire des requêtes SQL efficaces : SELECT, filtres, agrégations et jointures entre plusieurs tables.",
+      instructor: "Dr. Salma Benjelloun",
+      level: "Intermédiaire",
+      duration: "3 semaines",
+      rating: 4.9,
+      students: 7890,
+      skills: ["SQL", "Jointures", "Agrégations", "Contraintes & vues"],
+      tools: ["PostgreSQL", "pgAdmin"],
+      pages: [
+        "Chapitre 2 — La commande SELECT extrait des données d'une ou plusieurs tables. WHERE filtre les lignes, ORDER BY les trie.",
+        "Chapitre 2.1 — Les fonctions d'agrégation (COUNT, SUM, AVG) combinées à GROUP BY permettent de résumer de grandes quantités de données.",
+        "Chapitre 2.2 — Les jointures (INNER, LEFT, RIGHT) combinent des lignes de plusieurs tables selon une condition de correspondance sur les clés.",
+        "Chapitre 2.3 — Les sous-requêtes permettent d'imbriquer une requête à l'intérieur d'une autre pour des filtrages complexes.",
+        "Chapitre 2.4 — Au-delà du simple SELECT, un SGBD peut faire respecter des contraintes d'intégrité et déclencher des actions automatiques (triggers) lorsqu'une règle métier est violée.",
+        "Chapitre 2.5 — Une vue est une requête SQL enregistrée que l'on interroge comme une table ; elle simplifie l'accès aux données sans dupliquer l'information.",
+        "Chapitre 2.6 — Exercice pratique : écrivez une requête listant les auteurs ayant emprunté plus de 3 livres, triée par nombre d'emprunts décroissant.",
+      ],
+    },
+    {
+      id: "nosql-mongodb",
+      title: "NoSQL et Bases Orientées Documents",
+      description:
+        "Découvrir les bases NoSQL avec MongoDB : documents, collections et cas d'usage face au relationnel.",
+      instructor: "Dr. Salma Benjelloun",
+      level: "Avancé",
+      duration: "3 semaines",
+      rating: 4.6,
+      students: 3210,
+      skills: ["NoSQL", "MongoDB", "Modélisation de documents"],
+      tools: ["MongoDB", "Mongo Compass"],
+      pages: [
+        "Chapitre 3 — Les bases NoSQL abandonnent le schéma rigide des tables au profit de structures flexibles : documents, clé-valeur, colonnes ou graphes.",
+        "Chapitre 3.1 — MongoDB stocke les données sous forme de documents JSON regroupés en collections, sans jointures natives.",
+        "Chapitre 3.2 — La modélisation NoSQL privilégie la dénormalisation : on imbrique ou duplique les données pour optimiser la lecture.",
+        "Chapitre 3.3 — Le choix entre SQL et NoSQL dépend du besoin : cohérence forte et relations complexes pour SQL, flexibilité et montée en charge pour NoSQL.",
+        "Chapitre 3.4 — Exercice pratique : modélisez une collection « Articles » avec des commentaires imbriqués directement dans le document.",
+      ],
+    },
+  ],
+  ia: [
+    {
+      id: "intro-ml",
+      title: "Introduction au Machine Learning",
+      description:
+        "Les fondations du Machine Learning : apprentissage supervisé, non supervisé et le cycle de vie d'un modèle.",
+      instructor: "Dr. Yassine Amrani",
+      level: "Débutant",
+      duration: "3 semaines",
+      rating: 4.9,
+      students: 9120,
+      skills: ["Agents intelligents", "Apprentissage supervisé", "Apprentissage non supervisé", "Overfitting"],
+      tools: ["Python", "scikit-learn"],
+      pages: [
+        "Chapitre 1 — L'IA étudie la conception d'agents intelligents : des systèmes qui perçoivent leur environnement et choisissent des actions pour atteindre un objectif, souvent en explorant un espace de recherche de solutions possibles.",
+        "Chapitre 1.1 — Le Machine Learning permet à un algorithme d'apprendre des motifs à partir de données, sans être explicitement programmé pour chaque règle.",
+        "Chapitre 1.2 — L'apprentissage supervisé utilise des données étiquetées (exemples avec réponse connue) pour entraîner un modèle de classification ou de régression.",
+        "Chapitre 1.3 — L'apprentissage non supervisé cherche des structures cachées dans des données non étiquetées, comme le clustering.",
+        "Chapitre 1.4 — Le surapprentissage (overfitting) survient quand un modèle mémorise les données d'entraînement au lieu de généraliser.",
+        "Chapitre 1.5 — Exercice pratique : entraînez un modèle de régression linéaire simple avec scikit-learn sur un jeu de données de prix immobiliers.",
+      ],
+    },
+    {
+      id: "reseaux-neurones",
+      title: "Réseaux de Neurones et Deep Learning",
+      description:
+        "Comprendre les neurones artificiels, la rétropropagation et les architectures de réseaux profonds.",
+      instructor: "Dr. Yassine Amrani",
+      level: "Intermédiaire",
+      duration: "4 semaines",
+      rating: 4.8,
+      students: 6780,
+      skills: ["Réseaux de neurones", "Rétropropagation", "Deep Learning"],
+      tools: ["Python", "PyTorch"],
+      pages: [
+        "Chapitre 2 — Un neurone artificiel combine des entrées pondérées, applique une fonction d'activation, et transmet le résultat aux neurones suivants.",
+        "Chapitre 2.1 — La rétropropagation ajuste les poids du réseau en propageant l'erreur de la sortie vers l'entrée, via la descente de gradient.",
+        "Chapitre 2.2 — Les réseaux profonds empilent plusieurs couches cachées pour apprendre des représentations de plus en plus abstraites des données.",
+        "Chapitre 2.3 — Les fonctions d'activation (ReLU, sigmoid, softmax) introduisent la non-linéarité indispensable à l'apprentissage de motifs complexes.",
+        "Chapitre 2.4 — Exercice pratique : construisez un petit réseau de neurones avec PyTorch pour classifier des chiffres manuscrits (MNIST).",
+      ],
+    },
+    {
+      id: "llm-nlp",
+      title: "LLMs et Traitement du Langage",
+      description:
+        "Découvrir les architectures Transformer, l'attention et le fonctionnement des grands modèles de langage.",
+      instructor: "Dr. Yassine Amrani",
+      level: "Avancé",
+      duration: "4 semaines",
+      rating: 4.9,
+      students: 5430,
+      skills: ["Transformers", "Attention", "Prompt Engineering"],
+      tools: ["Python", "Hugging Face"],
+      pages: [
+        "Chapitre 3 — L'architecture Transformer repose sur le mécanisme d'attention, qui permet au modèle de pondérer l'importance de chaque mot par rapport aux autres.",
+        "Chapitre 3.1 — Le self-attention calcule, pour chaque token, une représentation contextuelle en fonction de tous les autres tokens de la séquence.",
+        "Chapitre 3.2 — Les grands modèles de langage (LLM) sont pré-entraînés sur d'immenses corpus de texte puis affinés pour des tâches spécifiques.",
+        "Chapitre 3.3 — Le prompt engineering consiste à formuler des instructions précises pour orienter la réponse d'un LLM sans réentraîner le modèle.",
+        "Chapitre 3.4 — Exercice pratique : comparez les réponses d'un LLM à un même prompt reformulé de trois façons différentes et analysez l'impact.",
+      ],
+    },
+  ],
+};
+
+export function getCourse(domainId, courseId) {
+  const list = domainCourses[domainId] || [];
+  return list.find((c) => c.id === courseId);
+}

@@ -1,0 +1,4 @@
+ANSWER:
+باش نجاوبو علا سوأل ديالك، خاصنا نشوفو أسisteام ديال إتيسال ونوريو واش ممكن نلقاو الجواب ف لمواد لي عطيتينا
+
+SOURCES: ['basedonnees.pdf', 'support-de-cours-linux.pdf']

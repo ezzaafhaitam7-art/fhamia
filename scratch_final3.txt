@@ -1,0 +1,6 @@
+QUESTION TRADUITE: définis le système d'exploitation
+
+ANSWER:
+فالمقاييس ديالنا، نظام التشغيل هو البرنامج الرئيسي فالهاردوير اللي كيتكلف بالاستعمال ديال الموارد وكيخلي التطبيقات يتطورو ويتنفذو.
+
+SOURCES: ['basedonnees.pdf', 'support-de-cours-linux.pdf']

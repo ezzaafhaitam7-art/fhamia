@@ -1,0 +1,7 @@
+FRENCH:
+D'après le contexte fourni, il semble que vous soyez intéressé par les systèmes d'exploitation et plus précisément par les outils de gestion des fichiers qui sont souvent associés à ces systèmes.
+
+Cependant, sans avoir plus de détails sur la question que vous souhaitez poser, je vais vous proposer quelques pistes pour démarrer :
+
+* Vous pouvez commencer par explorer les commandes présentées dans le document "III.3. Outils de gestion de l'arborescence" comme `pwd`, `ls`, `mkdir`, etc.
+* Si vous recherchez des informations sur les systèmes d'exploitation, vous pouvez chercher des informations
