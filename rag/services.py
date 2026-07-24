@@ -4,7 +4,7 @@ from django.conf import settings
 
 from .chroma_client import get_collection
 from .language import is_darija
-from .llm import ask_chat, ask_ollama
+from .llm import ask_chat, ask_translate
 
 # Le client Chroma (bindings Rust) n'est pas garanti thread-safe pour des
 # requêtes concurrentes : deux threads Django interrogeant la collection en
@@ -116,6 +116,35 @@ def build_darija_prompt(question, chunks):
     return f"Student question: {question}"
 
 
+# Sans consigne système explicite, un modèle généraliste large (Groq) a
+# tendance à "discuter" la question plutôt qu'à traduire strictement (observé:
+# réponses hors-sujet du type "je ne sais pas..."), ce qui pollue ensuite la
+# recherche RAG avec une fausse traduction. Un system prompt dédié à la seule
+# tâche de traduction règle ce problème.
+TRANSLATOR_SYSTEM_PROMPT = (
+    "Tu es un traducteur. Tu réponds UNIQUEMENT par la traduction demandée, "
+    "sans aucun commentaire, explication ou texte additionnel."
+)
+
+# Sans ces précisions, un grand modèle généraliste traduit vers l'arabe
+# standard (fusha) plutôt que le darija marocain familier réellement parlé
+# (constaté : "العروض" au lieu de "les vues", tournures très formelles).
+DARIJA_TRANSLATOR_SYSTEM_PROMPT = (
+    TRANSLATOR_SYSTEM_PROMPT + " Traduis en darija marocaine FAMILIÈRE et parlée "
+    "(le dialecte du Maroc, PAS l'arabe standard/fusha, PAS l'arabe égyptien), "
+    "avec des mots typiquement marocains comme 'daba', 'bzaf', 'wach', 'dyal', "
+    "'chno', 'kayn', 'baghi', 'ghadi' plutôt que leurs équivalents en arabe "
+    "classique, comme le ferait un Marocain à l'oral. N'utilise QUE l'alphabet "
+    "arabe et l'alphabet latin : n'utilise JAMAIS l'alphabet cyrillique, "
+    "chinois, ou tout autre système d'écriture. Pour les mots techniques ou "
+    "empruntés au français/anglais (ex: update, protocole, connexion, "
+    "manipulation, complexité), garde-les TELS QUELS en alphabet latin plutôt "
+    "que d'inventer une transcription phonétique en arabe si tu n'es pas "
+    "certain de l'orthographe correcte — c'est ce qui se fait naturellement "
+    "en darija à l'oral, mélanger arabe et mots français/anglais non traduits."
+)
+
+
 def translate_to_darija(french_text):
     prompt = (
         "Traduis fidèlement ce texte en darija marocaine (écriture arabe), sans changer le "
@@ -125,15 +154,34 @@ def translate_to_darija(french_text):
     # bornée par le texte source. On laisse une marge large (400) pour ne
     # jamais couper une vraie traduction, sans payer le coût d'un num_predict
     # illimité comme sur la génération de contenu.
-    return ask_ollama(prompt, num_predict=400, model=settings.DARIJA_MODEL, temperature=0.1)
+    return ask_translate(prompt, system=DARIJA_TRANSLATOR_SYSTEM_PROMPT, num_predict=400, temperature=0.1)
+
+
+# Les questions darija en alphabet latin ont énormément de variantes
+# d'orthographe pour un même mot interrogatif ("chno", "chnou", "chnahowa",
+# "chnahouwa", "achno", "ashno"...). Sans exemples, un modèle généraliste
+# reconnaît certaines graphies mais pas d'autres très proches, et hallucine
+# complètement au lieu de traduire (observé : "chnahouwa udp" traduit en
+# "Je ne sais pas où" au lieu de "Qu'est-ce que UDP ?"). Ces quelques
+# exemples couvrent les graphies les plus fréquentes pour que le modèle
+# généralise aux variantes non listées.
+DARIJA_TRANSLATION_EXAMPLES = (
+    "Exemples de mots interrogatifs darija et leurs variantes d'orthographe "
+    "possibles en alphabet latin (toutes équivalentes, à traduire par "
+    "'qu'est-ce que'/'quoi') : chno, chnou, chna, chnahowa, chnahouwa, "
+    "chnahiya, achno, achnou, ashno, ashnou. Exemple : 'chnahouwa http' se "
+    "traduit par \"Qu'est-ce que HTTP ?\", pas autre chose."
+)
 
 
 def translate_to_french(darija_text):
     prompt = (
-        "Traduis fidèlement cette question en français correct, mot pour mot si possible, "
-        f"sans changer le sens ni ajouter d'autre texte que la traduction :\n\n{darija_text}"
+        "Traduis fidèlement cette question, écrite en darija marocaine (parfois en alphabet "
+        "latin), en français correct, mot pour mot si possible, sans changer le sens ni "
+        f"ajouter d'autre texte que la traduction :\n\n{darija_text}\n\n"
+        f"{DARIJA_TRANSLATION_EXAMPLES}"
     )
-    return ask_ollama(prompt, num_predict=200, model=settings.DARIJA_MODEL, temperature=0.1)
+    return ask_translate(prompt, system=TRANSLATOR_SYSTEM_PROMPT, num_predict=200, temperature=0.1)
 
 
 def rag_answer(question, top_k=2):

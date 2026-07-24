@@ -55,6 +55,13 @@ SMALLTALK_PHRASES = {
 }
 
 
+# Préfixes robustes à eux seuls : "chno/chna" ("quoi") apparaît dans de
+# nombreuses variantes d'orthographe collées ("chnahowa", "chnahouwa",
+# "chnahiya"...) qu'il est plus fiable de détecter par préfixe que de lister
+# une à une dans DARIJA_MARKERS.
+DARIJA_PREFIXES = ("chna", "achna", "kifach", "kidayer", "kidaayer")
+
+
 def is_darija(text):
     if ARABIC_SCRIPT_RE.search(text):
         return True
@@ -63,7 +70,10 @@ def is_darija(text):
         return True
 
     words = re.findall(r"[a-zA-Z0-9']+", text.lower())
-    return any(word in DARIJA_MARKERS for word in words)
+    return any(
+        word in DARIJA_MARKERS or word.startswith(DARIJA_PREFIXES)
+        for word in words
+    )
 
 
 def is_smalltalk(text):

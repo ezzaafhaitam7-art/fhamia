@@ -25,10 +25,13 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lz+!713sd#wf8l$)o6j8$^t39va59f!dq9=1ph%(jk9b*1pjd)'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-lz+!713sd#wf8l$)o6j8$^t39va59f!dq9=1ph%(jk9b*1pjd)',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 # En dev, l'IP du PC change selon le réseau (Wi-Fi maison, partage de connexion du
 # téléphone, etc.) — plutôt que de la lister à la main à chaque changement, on
@@ -38,11 +41,11 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
     CORS_ALLOWED_ORIGINS = []
 else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-    CORS_ALLOWED_ORIGINS = [
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-    ]
+    # En prod, renseignés via variables d'environnement : le domaine du
+    # backend déployé (ALLOWED_HOSTS) et celui du frontend Vercel
+    # (CORS_ALLOWED_ORIGINS), séparés par des virgules.
+    ALLOWED_HOSTS = [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h]
+    CORS_ALLOWED_ORIGINS = [o for o in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',') if o]
 
 CORS_EXPOSE_HEADERS = ['X-Sources', 'X-Question-Traduite']
 
@@ -83,6 +86,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,14 +119,16 @@ WSGI_APPLICATION = 'fhamia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+print(f"DEBUG env DB_HOST={os.environ.get('DB_HOST')!r} DB_PORT={os.environ.get('DB_PORT')!r} DB_NAME={os.environ.get('DB_NAME')!r} DB_USER={os.environ.get('DB_USER')!r}", flush=True)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fhamia',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'NAME': os.environ.get('DB_NAME', 'fhamia'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '3308'),
         'OPTIONS': {
             'charset': 'utf8mb4',
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', default_storage_engine='INNODB'",
@@ -166,6 +172,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STORAGES = {
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -184,11 +196,17 @@ OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
 OLLAMA_MODEL = os.environ.get('OLLAMA_MODEL', 'llama3.2:1b')
 DARIJA_MODEL = os.environ.get('DARIJA_MODEL', 'hf.co/QuantFactory/Atlas-Chat-2B-GGUF:Q4_K_M')
 
-# LLM_PROVIDER='ollama' (défaut, local) ou 'azure' (cloud, rapide) pour le
-# modèle de chat général. Le modèle darija dédié (Atlas-Chat) reste toujours
-# sur Ollama, quel que soit ce réglage.
+# LLM_PROVIDER='ollama' (défaut, local), 'azure' ou 'groq' (cloud, rapides)
+# pour le modèle de chat général. Le modèle darija dédié (Atlas-Chat) reste
+# toujours sur Ollama, quel que soit ce réglage.
 LLM_PROVIDER = os.environ.get('LLM_PROVIDER', 'ollama')
 AZURE_OPENAI_ENDPOINT = os.environ.get('AZURE_OPENAI_ENDPOINT', '')
 AZURE_OPENAI_API_KEY = os.environ.get('AZURE_OPENAI_API_KEY', '')
 AZURE_OPENAI_DEPLOYMENT = os.environ.get('AZURE_OPENAI_DEPLOYMENT', '')
 AZURE_OPENAI_API_VERSION = os.environ.get('AZURE_OPENAI_API_VERSION', '2024-10-21')
+GROQ_API_KEY = os.environ.get('GROQ_API_KEY', '')
+GROQ_MODEL = os.environ.get('GROQ_MODEL', 'llama-3.1-8b-instant')
+# Modèle plus costaud utilisé pour le darija (traduction + réponse) quand
+# LLM_PROVIDER=groq : un petit modèle 8B est moins fiable sur ce dialecte
+# qu'un modèle plus large.
+GROQ_DARIJA_MODEL = os.environ.get('GROQ_DARIJA_MODEL', 'llama-3.3-70b-versatile')

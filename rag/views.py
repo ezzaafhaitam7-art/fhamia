@@ -7,8 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from .language import is_darija, is_smalltalk
-from .llm import ask_chat_stream, ask_ollama, ask_ollama_stream
-from .services import build_darija_prompt, build_prompt, chat_system_prompt, rag_answer, retrieve, translate_to_french
+from .llm import ask_chat, ask_chat_stream
+from .services import build_prompt, chat_system_prompt, rag_answer, retrieve, translate_to_darija, translate_to_french
 
 # Priorité absolue à des réponses complètes, jamais coupées, quitte à
 # attendre : num_predict=-1 laisse le modèle s'arrêter tout seul (fin de
@@ -85,37 +85,40 @@ def query_stream_view(request):
         # update w create"), chercher directement dans le cours (en français)
         # avec ce texte donne des résultats hors sujet : la recherche par
         # similarité ne matche presque rien. On traduit d'abord en français
-        # pour trouver le bon passage de cours, uniquement pour la recherche
-        # (la question posée au modèle reste inchangée, dans sa langue).
+        # pour trouver le bon passage de cours, ET on réutilise cette
+        # traduction comme question posée au modèle (voir plus bas) : générer
+        # la réponse en français puis la traduire en darija donne un bien
+        # meilleur résultat que de faire générer le texte en darija
+        # directement (les modèles, même spécialisés, y sont peu fiables).
         retrieval_query = translate_to_french(question) if darija else question
         try:
             chunks = retrieve(retrieval_query, top_k=1)
         except Exception as exc:
             return JsonResponse({"error": str(exc)}, status=500)
+    else:
+        retrieval_query = question
 
-    prompt = build_darija_prompt(question, chunks) if darija else build_prompt(question, chunks, history=history)
+    prompt = build_prompt(retrieval_query, chunks, history=history)
     sources = sorted({meta.get("source", "inconnue") for _, meta in chunks})
 
     def gen():
         try:
             if darija:
-                # Le petit modèle généraliste ne sait pas écrire en darija de
-                # façon cohérente : on garde le modèle dédié Atlas-Chat sur
-                # Ollama, indépendamment de LLM_PROVIDER.
-                stream = ask_ollama_stream(
+                # Pas de streaming token par token ici : il faut la réponse
+                # française complète avant de pouvoir la traduire fidèlement.
+                french_answer = ask_chat(
                     prompt,
-                    system=chat_system_prompt(darija),
-                    model=settings.DARIJA_MODEL,
+                    system=chat_system_prompt(False),
                     num_predict=MAX_ANSWER_TOKENS,
-                    max_seconds=MAX_ANSWER_SECONDS,
                 )
-            else:
-                stream = ask_chat_stream(
-                    prompt,
-                    system=chat_system_prompt(darija),
-                    num_predict=MAX_ANSWER_TOKENS,
-                    max_seconds=MAX_ANSWER_SECONDS,
-                )
+                yield translate_to_darija(french_answer)
+                return
+            stream = ask_chat_stream(
+                prompt,
+                system=chat_system_prompt(darija),
+                num_predict=MAX_ANSWER_TOKENS,
+                max_seconds=MAX_ANSWER_SECONDS,
+            )
             for token in stream:
                 yield token
         except Exception as exc:
@@ -144,7 +147,7 @@ def evaluate_view(request):
     prompt = f"Consigne de l'exercice :\n{consigne}\n\nRéponse de l'apprenant :\n{reponse}"
 
     try:
-        feedback = ask_ollama(prompt, system=EVAL_SYSTEM_PROMPT)
+        feedback = ask_chat(prompt, system=EVAL_SYSTEM_PROMPT)
     except Exception as exc:
         return JsonResponse({"error": str(exc)}, status=500)
 
@@ -173,7 +176,7 @@ def prompt_view(request):
         return JsonResponse({"error": "Paramètres invalides."}, status=400)
 
     try:
-        response = ask_ollama(prompt, num_predict=num_predict, temperature=temperature)
+        response = ask_chat(prompt, num_predict=num_predict, temperature=temperature)
     except Exception as exc:
         return JsonResponse({"error": str(exc)}, status=500)
 
@@ -203,7 +206,7 @@ def prompt_stream_view(request):
 
     def gen():
         try:
-            for token in ask_ollama_stream(prompt, num_predict=num_predict, temperature=temperature):
+            for token in ask_chat_stream(prompt, num_predict=num_predict, temperature=temperature):
                 yield token
         except Exception as exc:
             yield f"\n\n[Erreur pendant la génération : {exc}]"
