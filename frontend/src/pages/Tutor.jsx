@@ -15,7 +15,7 @@ import {
   ClipboardList,
   ArrowUpRight,
 } from "lucide-react";
-import { getSession } from "../api";
+import { API_BASE, getSession } from "../api";
 import BackButton from "../components/BackButton";
 import { courses } from "../data/courses";
 import { visualisations } from "../data/visualisations";
@@ -30,7 +30,7 @@ const BORDER = "#e5e7eb";
 const PAGE_BG = "#f8f9fa";
 const GREEN = "#16a34a";
 
-const RAG_API_BASE = "http://localhost:8000/api/rag";
+const RAG_API_BASE = `${API_BASE}/rag`;
 const STORAGE_PREFIX = "fhamia-tutor-conversations";
 
 function storageKey(session) {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Calculator } from "lucide-react";
 import PlaygroundShell, { BLUE, BLUE_SOFT, BORDER, INK, SUB } from "../components/PlaygroundShell";
-import { getSession } from "../api";
+import { API_BASE, getSession } from "../api";
 import { logActivity } from "../utils/lmsStorage";
 
-const PLAYGROUND_API_BASE = "http://localhost:8000/api/playground";
+const PLAYGROUND_API_BASE = `${API_BASE}/playground`;
 
 const FIELDS = [
   { key: "adresse_reseau", label: "Adresse réseau" },

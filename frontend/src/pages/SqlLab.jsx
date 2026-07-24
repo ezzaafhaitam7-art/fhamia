@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Play, RotateCcw } from "lucide-react";
-import { getSession } from "../api";
+import { API_BASE, getSession } from "../api";
 import PlaygroundShell, { BLUE, BLUE_SOFT, BORDER, INK, SUB } from "../components/PlaygroundShell";
 import { logActivity } from "../utils/lmsStorage";
 
-const PLAYGROUND_API_BASE = "http://localhost:8000/api/playground";
+const PLAYGROUND_API_BASE = `${API_BASE}/playground`;
 const STARTER_QUERY = "SELECT titre, annee FROM livres WHERE annee > 2019;";
 
 export default function SqlLab() {

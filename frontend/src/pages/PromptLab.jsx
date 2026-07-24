@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Sparkle } from "lucide-react";
 import PlaygroundShell, { BLUE, BLUE_SOFT, BORDER, INK, SUB } from "../components/PlaygroundShell";
-import { getSession } from "../api";
+import { API_BASE, getSession } from "../api";
 import { logActivity } from "../utils/lmsStorage";
 
-const RAG_API_BASE = "http://localhost:8000/api/rag";
+const RAG_API_BASE = `${API_BASE}/rag`;
 
 export default function PromptLab() {
   const [prompt, setPrompt] = useState("Explique-moi ce qu'est un réseau de neurones, en une phrase simple.");

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { getSession } from "../api";
+import { API_BASE, getSession } from "../api";
 import PlaygroundShell, { BLUE_SOFT, BLUE, BORDER } from "../components/PlaygroundShell";
 import { logActivity } from "../utils/lmsStorage";
 
-const PLAYGROUND_API_BASE = "http://localhost:8000/api/playground";
+const PLAYGROUND_API_BASE = `${API_BASE}/playground`;
 const USERNAME = "user";
 const HOSTNAME = "fhamia";
 
