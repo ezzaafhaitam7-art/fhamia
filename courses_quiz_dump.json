@@ -1,0 +1,1428 @@
+[
+  {
+    "model": "courses.parcours",
+    "pk": 1,
+    "fields": {
+      "slug": "linux",
+      "titre": "Linux & Terminal",
+      "description": "Le parcours Linux le plus complet, modifié depuis l'admin.",
+      "niveau": "Débutant",
+      "administrateur": null,
+      "apprenants": []
+    }
+  },
+  {
+    "model": "courses.parcours",
+    "pk": 2,
+    "fields": {
+      "slug": "reseaux",
+      "titre": "Réseaux & Protocoles",
+      "description": "Parcours Réseaux & Protocoles",
+      "niveau": "Intermédiaire",
+      "administrateur": null,
+      "apprenants": []
+    }
+  },
+  {
+    "model": "courses.parcours",
+    "pk": 3,
+    "fields": {
+      "slug": "bdd",
+      "titre": "Bases de Données",
+      "description": "Parcours Bases de Données",
+      "niveau": "Avancé",
+      "administrateur": null,
+      "apprenants": []
+    }
+  },
+  {
+    "model": "courses.parcours",
+    "pk": 4,
+    "fields": {
+      "slug": "ia",
+      "titre": "Intelligence Artificielle",
+      "description": "Parcours Intelligence Artificielle",
+      "niveau": "Parcours Phare",
+      "administrateur": null,
+      "apprenants": []
+    }
+  },
+  {
+    "model": "courses.parcours",
+    "pk": 5,
+    "fields": {
+      "slug": "devops-cloud",
+      "titre": "DevOps & Cloud",
+      "description": "Apprends Docker, Kubernetes et le déploiement cloud.",
+      "niveau": "Débutant",
+      "administrateur": null,
+      "apprenants": []
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 1,
+    "fields": {
+      "parcours": 1,
+      "titre": "Introduction au Shell Unix",
+      "contenu": "Comprendre l'interpréteur de commandes, la navigation dans l'arborescence et les commandes essentielles.\n\nChapitre 1 — Le shell est l'interpréteur qui traduit vos commandes texte en actions système. Il existe plusieurs shells (sh, bash, zsh), bash étant le plus répandu sur les distributions Linux.\n\nChapitre 1.1 — L'arborescence Unix commence à la racine « / ». Chaque dossier a un rôle précis : /home pour les utilisateurs, /etc pour la configuration, /var pour les données variables.\n\nChapitre 1.2 — Les commandes de navigation : pwd affiche le dossier courant, cd permet de se déplacer, ls liste le contenu d'un répertoire avec de nombreuses options (-l, -a, -h).\n\nChapitre 1.3 — La manipulation de fichiers : cp copie, mv déplace ou renomme, rm supprime. Toujours vérifier le chemin avant une suppression, Unix ne propose pas de corbeille par défaut.\n\nChapitre 1.4 — Les redirections permettent de rediriger la sortie d'une commande : > écrase un fichier, >> ajoute à la suite, et le pipe | enchaîne plusieurs commandes entre elles.\n\nChapitre 1.5 — Exercice pratique : créez une arborescence de projet, déplacez des fichiers, et combinez ls, grep et wc via des pipes pour compter des lignes correspondant à un motif.",
+      "duree": 60
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 2,
+    "fields": {
+      "parcours": 1,
+      "titre": "Permissions et Gestion des Utilisateurs",
+      "contenu": "Maîtriser le modèle de permissions Unix (rwx), les utilisateurs, groupes et la commande chmod/chown.\n\nChapitre 2 — Chaque fichier Unix possède un propriétaire, un groupe et des permissions de lecture (r), écriture (w) et exécution (x) pour trois catégories : utilisateur, groupe, autres.\n\nChapitre 2.1 — La commande chmod modifie les permissions, en notation symbolique (u+x) ou numérique (755). La commande chown change le propriétaire d'un fichier.\n\nChapitre 2.2 — Les groupes permettent de partager des droits entre plusieurs utilisateurs sans dupliquer les permissions individuelles.\n\nChapitre 2.3 — sudo autorise l'exécution ponctuelle de commandes avec les privilèges root, en laissant une trace dans les journaux systèmes pour l'audit.\n\nChapitre 2.4 — Exercice pratique : créez un groupe « devs », ajoutez deux utilisateurs, et configurez un dossier partagé accessible en lecture/écriture uniquement par ce groupe.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 3,
+    "fields": {
+      "parcours": 1,
+      "titre": "Scripting Bash pour l'Automatisation",
+      "contenu": "Écrire des scripts Bash robustes : variables, conditions, boucles et automatisation de tâches système.\n\nChapitre 3 — Un script Bash commence par un shebang #!/bin/bash. Les variables se déclarent sans espace autour du signe égal et s'appellent avec un $.\n\nChapitre 3.1 — Les structures conditionnelles if/then/else et les boucles for/while permettent d'automatiser des traitements répétitifs sur des fichiers ou des listes.\n\nChapitre 3.2 — Les fonctions Bash regroupent du code réutilisable. Elles reçoivent des arguments positionnels ($1, $2...) comme un script classique.\n\nChapitre 3.3 — Cron permet de planifier l'exécution automatique de scripts à intervalles réguliers, via une syntaxe de 5 champs représentant minute, heure, jour, mois, jour de semaine.\n\nChapitre 3.4 — Exercice pratique : écrivez un script qui sauvegarde un dossier chaque nuit à 2h du matin et purge les sauvegardes de plus de 7 jours.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 4,
+    "fields": {
+      "parcours": 2,
+      "titre": "Le Modèle OSI et TCP/IP",
+      "contenu": "Comprendre les 7 couches du modèle OSI et leur correspondance avec la pile TCP/IP utilisée sur Internet.\n\nChapitre 1 — Le modèle OSI découpe la communication réseau en 7 couches, de la couche physique (câbles, signaux) à la couche application (HTTP, DNS).\n\nChapitre 1.1 — Chaque couche encapsule les données de la couche supérieure avec son propre en-tête, formant des trames, paquets puis segments.\n\nChapitre 1.2 — Le modèle TCP/IP simplifie l'OSI en 4 couches : Accès réseau, Internet, Transport, Application — c'est celui réellement utilisé sur Internet.\n\nChapitre 1.3 — La couche Transport distingue TCP (fiable, avec accusés de réception) et UDP (rapide, sans garantie de livraison).\n\nChapitre 1.4 — Exercice pratique : capturez du trafic HTTP avec Wireshark et identifiez les couches successives d'un paquet.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 5,
+    "fields": {
+      "parcours": 2,
+      "titre": "Adressage IP et Sous-réseaux",
+      "contenu": "Calculer des sous-réseaux, comprendre le masque, le CIDR et la répartition des adresses IPv4.\n\nChapitre 2 — Une adresse IPv4 est composée de 32 bits répartis en 4 octets. Elle identifie de façon unique un hôte sur un réseau.\n\nChapitre 2.1 — Le masque de sous-réseau détermine la partie réseau et la partie hôte d'une adresse, permettant de segmenter un réseau en sous-réseaux plus petits.\n\nChapitre 2.2 — La notation CIDR (ex: /24) remplace le masque décimal et facilite le calcul rapide du nombre d'adresses disponibles.\n\nChapitre 2.3 — Le sous-réseautage (subnetting) permet d'optimiser l'utilisation des adresses IP et d'isoler le trafic entre différents services.\n\nChapitre 2.4 — Exercice pratique : divisez le réseau 192.168.1.0/24 en 4 sous-réseaux égaux et déterminez leurs plages d'adresses utilisables.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 6,
+    "fields": {
+      "parcours": 2,
+      "titre": "Sécurité Réseau et Pare-feu",
+      "contenu": "Protéger une infrastructure réseau : pare-feu, VPN, segmentation et bonnes pratiques de sécurité.\n\nChapitre 3 — Un pare-feu filtre le trafic entrant et sortant selon des règles définies, basées sur les adresses IP, ports et protocoles.\n\nChapitre 3.1 — Un VPN chiffre les communications entre deux points, permettant un accès sécurisé à un réseau privé depuis l'extérieur.\n\nChapitre 3.2 — La segmentation réseau isole les systèmes critiques dans des VLAN distincts, réduisant la surface d'attaque en cas d'intrusion.\n\nChapitre 3.3 — Exercice pratique : configurez des règles de pare-feu de base pour n'autoriser que le trafic HTTP, HTTPS et SSH sur un serveur.",
+      "duree": 40
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 7,
+    "fields": {
+      "parcours": 3,
+      "titre": "Le Modèle Relationnel",
+      "contenu": "Comprendre les fondations des bases relationnelles : tables, clés primaires, clés étrangères et intégrité.\n\nChapitre 1 — Le modèle relationnel organise les données en tables (relations), composées de lignes (tuples) et de colonnes (attributs).\n\nChapitre 1.1 — La clé primaire identifie de façon unique chaque ligne d'une table. Elle ne peut jamais être nulle ni dupliquée.\n\nChapitre 1.2 — Une clé étrangère référence la clé primaire d'une autre table, matérialisant les relations entre entités.\n\nChapitre 1.3 — L'intégrité référentielle garantit qu'une clé étrangère pointe toujours vers une ligne existante, évitant les données orphelines.\n\nChapitre 1.4 — Exercice pratique : modélisez une base « Bibliothèque » avec les tables Livres, Auteurs et Emprunts reliées par des clés étrangères.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 8,
+    "fields": {
+      "parcours": 3,
+      "titre": "SQL : Requêtes et Jointures",
+      "contenu": "Écrire des requêtes SQL efficaces : SELECT, filtres, agrégations et jointures entre plusieurs tables.\n\nChapitre 2 — La commande SELECT extrait des données d'une ou plusieurs tables. WHERE filtre les lignes, ORDER BY les trie.\n\nChapitre 2.1 — Les fonctions d'agrégation (COUNT, SUM, AVG) combinées à GROUP BY permettent de résumer de grandes quantités de données.\n\nChapitre 2.2 — Les jointures (INNER, LEFT, RIGHT) combinent des lignes de plusieurs tables selon une condition de correspondance sur les clés.\n\nChapitre 2.3 — Les sous-requêtes permettent d'imbriquer une requête à l'intérieur d'une autre pour des filtrages complexes.\n\nChapitre 2.4 — Au-delà du simple SELECT, un SGBD peut faire respecter des contraintes d'intégrité et déclencher des actions automatiques (triggers) lorsqu'une règle métier est violée.\n\nChapitre 2.5 — Une vue est une requête SQL enregistrée que l'on interroge comme une table ; elle simplifie l'accès aux données sans dupliquer l'information.\n\nChapitre 2.6 — Exercice pratique : écrivez une requête listant les auteurs ayant emprunté plus de 3 livres, triée par nombre d'emprunts décroissant.",
+      "duree": 70
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 9,
+    "fields": {
+      "parcours": 3,
+      "titre": "NoSQL et Bases Orientées Documents",
+      "contenu": "Découvrir les bases NoSQL avec MongoDB : documents, collections et cas d'usage face au relationnel.\n\nChapitre 3 — Les bases NoSQL abandonnent le schéma rigide des tables au profit de structures flexibles : documents, clé-valeur, colonnes ou graphes.\n\nChapitre 3.1 — MongoDB stocke les données sous forme de documents JSON regroupés en collections, sans jointures natives.\n\nChapitre 3.2 — La modélisation NoSQL privilégie la dénormalisation : on imbrique ou duplique les données pour optimiser la lecture.\n\nChapitre 3.3 — Le choix entre SQL et NoSQL dépend du besoin : cohérence forte et relations complexes pour SQL, flexibilité et montée en charge pour NoSQL.\n\nChapitre 3.4 — Exercice pratique : modélisez une collection « Articles » avec des commentaires imbriqués directement dans le document.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 10,
+    "fields": {
+      "parcours": 4,
+      "titre": "Introduction au Machine Learning",
+      "contenu": "Les fondations du Machine Learning : apprentissage supervisé, non supervisé et le cycle de vie d'un modèle.\n\nChapitre 1 — L'IA étudie la conception d'agents intelligents : des systèmes qui perçoivent leur environnement et choisissent des actions pour atteindre un objectif, souvent en explorant un espace de recherche de solutions possibles.\n\nChapitre 1.1 — Le Machine Learning permet à un algorithme d'apprendre des motifs à partir de données, sans être explicitement programmé pour chaque règle.\n\nChapitre 1.2 — L'apprentissage supervisé utilise des données étiquetées (exemples avec réponse connue) pour entraîner un modèle de classification ou de régression.\n\nChapitre 1.3 — L'apprentissage non supervisé cherche des structures cachées dans des données non étiquetées, comme le clustering.\n\nChapitre 1.4 — Le surapprentissage (overfitting) survient quand un modèle mémorise les données d'entraînement au lieu de généraliser.\n\nChapitre 1.5 — Exercice pratique : entraînez un modèle de régression linéaire simple avec scikit-learn sur un jeu de données de prix immobiliers.",
+      "duree": 60
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 11,
+    "fields": {
+      "parcours": 4,
+      "titre": "Réseaux de Neurones et Deep Learning",
+      "contenu": "Comprendre les neurones artificiels, la rétropropagation et les architectures de réseaux profonds.\n\nChapitre 2 — Un neurone artificiel combine des entrées pondérées, applique une fonction d'activation, et transmet le résultat aux neurones suivants.\n\nChapitre 2.1 — La rétropropagation ajuste les poids du réseau en propageant l'erreur de la sortie vers l'entrée, via la descente de gradient.\n\nChapitre 2.2 — Les réseaux profonds empilent plusieurs couches cachées pour apprendre des représentations de plus en plus abstraites des données.\n\nChapitre 2.3 — Les fonctions d'activation (ReLU, sigmoid, softmax) introduisent la non-linéarité indispensable à l'apprentissage de motifs complexes.\n\nChapitre 2.4 — Exercice pratique : construisez un petit réseau de neurones avec PyTorch pour classifier des chiffres manuscrits (MNIST).",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 12,
+    "fields": {
+      "parcours": 4,
+      "titre": "LLMs et Traitement du Langage",
+      "contenu": "Découvrir les architectures Transformer, l'attention et le fonctionnement des grands modèles de langage.\n\nChapitre 3 — L'architecture Transformer repose sur le mécanisme d'attention, qui permet au modèle de pondérer l'importance de chaque mot par rapport aux autres.\n\nChapitre 3.1 — Le self-attention calcule, pour chaque token, une représentation contextuelle en fonction de tous les autres tokens de la séquence.\n\nChapitre 3.2 — Les grands modèles de langage (LLM) sont pré-entraînés sur d'immenses corpus de texte puis affinés pour des tâches spécifiques.\n\nChapitre 3.3 — Le prompt engineering consiste à formuler des instructions précises pour orienter la réponse d'un LLM sans réentraîner le modèle.\n\nChapitre 3.4 — Exercice pratique : comparez les réponses d'un LLM à un même prompt reformulé de trois façons différentes et analysez l'impact.",
+      "duree": 50
+    }
+  },
+  {
+    "model": "courses.lecon",
+    "pk": 13,
+    "fields": {
+      "parcours": 5,
+      "titre": "Introduction à Docker",
+      "contenu": "Docker permet de conteneuriser des applications pour les exécuter de façon isolée et portable.",
+      "duree": 30
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 1,
+    "fields": {
+      "lecon": 1,
+      "titre": "Quiz Linux",
+      "score_minimum": 50
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 2,
+    "fields": {
+      "lecon": 4,
+      "titre": "Quiz Réseaux Informatiques",
+      "score_minimum": 50
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 3,
+    "fields": {
+      "lecon": 7,
+      "titre": "Quiz Bases de Données",
+      "score_minimum": 50
+    }
+  },
+  {
+    "model": "quiz.quiz",
+    "pk": 4,
+    "fields": {
+      "lecon": 10,
+      "titre": "Quiz Intelligence Artificielle",
+      "score_minimum": 50
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel est le rôle principal d'un système d'exploitation Linux ?",
+      "choix": [
+        "Créer des documents",
+        "Gérer les ressources matérielles et exécuter les programmes",
+        "Naviguer sur Internet",
+        "Installer uniquement les pilotes"
+      ],
+      "reponse_correcte": "Gérer les ressources matérielles et exécuter les programmes"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 2,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet d'afficher le contenu d'une archive TAR sans l'extraire ?",
+      "choix": [
+        "tar xvf",
+        "tar tvf",
+        "tar cvf",
+        "tar mvf"
+      ],
+      "reponse_correcte": "tar tvf"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 3,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de créer un nouvel utilisateur sous Linux ?",
+      "choix": [
+        "addusergroup",
+        "useradd",
+        "newuser",
+        "mkuser"
+      ],
+      "reponse_correcte": "useradd"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 4,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de modifier le mot de passe d'un utilisateur ?",
+      "choix": [
+        "pass",
+        "passwd",
+        "changepass",
+        "password"
+      ],
+      "reponse_correcte": "passwd"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 5,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel fichier contient les informations des utilisateurs ?",
+      "choix": [
+        "/etc/group",
+        "/etc/passwd",
+        "/etc/shadow",
+        "/home/users"
+      ],
+      "reponse_correcte": "/etc/passwd"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 6,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel fichier contient les mots de passe chiffrés ?",
+      "choix": [
+        "/etc/login",
+        "/etc/group",
+        "/etc/shadow",
+        "/etc/users"
+      ],
+      "reponse_correcte": "/etc/shadow"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 7,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel est l'UID de l'utilisateur root ?",
+      "choix": [
+        "1",
+        "100",
+        "500",
+        "0"
+      ],
+      "reponse_correcte": "0"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 8,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Dans quel répertoire se trouvent généralement les dossiers personnels des utilisateurs ?",
+      "choix": [
+        "/usr",
+        "/root",
+        "/home",
+        "/boot"
+      ],
+      "reponse_correcte": "/home"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 9,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de connaître les groupes d'un utilisateur ?",
+      "choix": [
+        "who",
+        "groups",
+        "users",
+        "members"
+      ],
+      "reponse_correcte": "groups"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 10,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel répertoire contient les fichiers de configuration du système ?",
+      "choix": [
+        "/etc",
+        "/usr",
+        "/var",
+        "/lib"
+      ],
+      "reponse_correcte": "/etc"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 11,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de changer le propriétaire d'un fichier ?",
+      "choix": [
+        "chmod",
+        "chgrp",
+        "chown",
+        "owner"
+      ],
+      "reponse_correcte": "chown"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 12,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de modifier les permissions d'un fichier ?",
+      "choix": [
+        "chmod",
+        "chown",
+        "cp",
+        "mv"
+      ],
+      "reponse_correcte": "chmod"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 13,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Que signifie le droit \"r\" ?",
+      "choix": [
+        "Renommer",
+        "Redémarrer",
+        "Lecture",
+        "Réinitialiser"
+      ],
+      "reponse_correcte": "Lecture"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 14,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Que signifie le droit \"w\" ?",
+      "choix": [
+        "Écriture",
+        "Exécution",
+        "Lecture",
+        "Partage"
+      ],
+      "reponse_correcte": "Écriture"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 15,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Que signifie le droit \"x\" ?",
+      "choix": [
+        "Compression",
+        "Exécution",
+        "Suppression",
+        "Copie"
+      ],
+      "reponse_correcte": "Exécution"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 16,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande affiche le chemin du répertoire courant ?",
+      "choix": [
+        "dir",
+        "pwd",
+        "ls",
+        "cd"
+      ],
+      "reponse_correcte": "pwd"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 17,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande affiche le contenu d'un répertoire ?",
+      "choix": [
+        "ls",
+        "dirlist",
+        "show",
+        "view"
+      ],
+      "reponse_correcte": "ls"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 18,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel éditeur de texte est considéré comme indispensable pour un administrateur Linux ?",
+      "choix": [
+        "Word",
+        "Notepad",
+        "vi",
+        "LibreOffice"
+      ],
+      "reponse_correcte": "vi"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 19,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quelle commande permet de supprimer un utilisateur ?",
+      "choix": [
+        "deleteuser",
+        "removeuser",
+        "userdel",
+        "delusergroup"
+      ],
+      "reponse_correcte": "userdel"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 20,
+    "fields": {
+      "quiz": 1,
+      "enonce": "Quel est le rôle de la commande umask ?",
+      "choix": [
+        "Supprimer un utilisateur",
+        "Modifier le mot de passe",
+        "Définir les permissions par défaut des nouveaux fichiers et répertoires",
+        "Afficher les processus"
+      ],
+      "reponse_correcte": "Définir les permissions par défaut des nouveaux fichiers et répertoires"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 21,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Qu'est-ce qu'un réseau informatique ?",
+      "choix": [
+        "Un logiciel de traitement de texte",
+        "Un ensemble d'ordinateurs et de périphériques reliés entre eux pour échanger des données",
+        "Un système d'exploitation",
+        "Une base de données"
+      ],
+      "reponse_correcte": "Un ensemble d'ordinateurs et de périphériques reliés entre eux pour échanger des données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 22,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel est le principal objectif d'un réseau informatique ?",
+      "choix": [
+        "Installer Windows",
+        "Partager des ressources et échanger des informations",
+        "Augmenter la mémoire RAM",
+        "Programmer des applications"
+      ],
+      "reponse_correcte": "Partager des ressources et échanger des informations"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 23,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Que signifie le sigle LAN ?",
+      "choix": [
+        "Large Area Network",
+        "Local Area Network",
+        "Long Area Network",
+        "Link Area Network"
+      ],
+      "reponse_correcte": "Local Area Network"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 24,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Que signifie le sigle WAN ?",
+      "choix": [
+        "Web Area Network",
+        "Wide Area Network",
+        "Wireless Area Network",
+        "World Access Network"
+      ],
+      "reponse_correcte": "Wide Area Network"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 25,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel équipement permet de connecter plusieurs ordinateurs dans un même réseau local ?",
+      "choix": [
+        "Routeur",
+        "Switch (commutateur)",
+        "Modem",
+        "Serveur"
+      ],
+      "reponse_correcte": "Switch (commutateur)"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 26,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel équipement permet de relier plusieurs réseaux différents ?",
+      "choix": [
+        "Switch",
+        "Routeur",
+        "Hub",
+        "Carte réseau"
+      ],
+      "reponse_correcte": "Routeur"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 27,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Que signifie le sigle IP ?",
+      "choix": [
+        "Internet Protocol",
+        "Internal Program",
+        "Internet Process",
+        "Internal Port"
+      ],
+      "reponse_correcte": "Internet Protocol"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 28,
+    "fields": {
+      "quiz": 2,
+      "enonce": "À quoi sert une adresse IP ?",
+      "choix": [
+        "Identifier un appareil sur le réseau",
+        "Identifier un disque dur",
+        "Identifier un utilisateur Windows",
+        "Identifier un navigateur"
+      ],
+      "reponse_correcte": "Identifier un appareil sur le réseau"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 29,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole est utilisé pour afficher des pages Web ?",
+      "choix": [
+        "FTP",
+        "HTTP",
+        "SMTP",
+        "DHCP"
+      ],
+      "reponse_correcte": "HTTP"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 30,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole est utilisé pour transférer des fichiers ?",
+      "choix": [
+        "FTP",
+        "DNS",
+        "ARP",
+        "SSH"
+      ],
+      "reponse_correcte": "FTP"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 31,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole permet de traduire un nom de domaine en adresse IP ?",
+      "choix": [
+        "SMTP",
+        "DHCP",
+        "DNS",
+        "TCP"
+      ],
+      "reponse_correcte": "DNS"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 32,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole attribue automatiquement une adresse IP aux ordinateurs ?",
+      "choix": [
+        "DNS",
+        "DHCP",
+        "HTTP",
+        "FTP"
+      ],
+      "reponse_correcte": "DHCP"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 33,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole garantit une transmission fiable des données ?",
+      "choix": [
+        "UDP",
+        "TCP",
+        "IP",
+        "ARP"
+      ],
+      "reponse_correcte": "TCP"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 34,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel protocole est plus rapide mais ne garantit pas la livraison des données ?",
+      "choix": [
+        "TCP",
+        "UDP",
+        "FTP",
+        "HTTPS"
+      ],
+      "reponse_correcte": "UDP"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 35,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Combien de couches comporte le modèle OSI ?",
+      "choix": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "reponse_correcte": "7"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 36,
+    "fields": {
+      "quiz": 2,
+      "enonce": "À quelle couche du modèle OSI appartient le protocole IP ?",
+      "choix": [
+        "Physique",
+        "Réseau",
+        "Transport",
+        "Application"
+      ],
+      "reponse_correcte": "Réseau"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 37,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel est le rôle principal d'un pare-feu (Firewall) ?",
+      "choix": [
+        "Augmenter la vitesse du réseau",
+        "Protéger le réseau contre les accès non autorisés",
+        "Sauvegarder les fichiers",
+        "Remplacer un routeur"
+      ],
+      "reponse_correcte": "Protéger le réseau contre les accès non autorisés"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 38,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Qu'est-ce qu'un serveur ?",
+      "choix": [
+        "Un ordinateur qui fournit des services à d'autres ordinateurs",
+        "Un câble réseau",
+        "Un logiciel antivirus",
+        "Une imprimante"
+      ],
+      "reponse_correcte": "Un ordinateur qui fournit des services à d'autres ordinateurs"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 39,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Quel est le rôle d'un client dans un réseau ?",
+      "choix": [
+        "Fournir des services",
+        "Demander des services à un serveur",
+        "Distribuer des adresses IP",
+        "Filtrer les paquets"
+      ],
+      "reponse_correcte": "Demander des services à un serveur"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 40,
+    "fields": {
+      "quiz": 2,
+      "enonce": "Pourquoi la sécurité est-elle essentielle dans un réseau informatique ?",
+      "choix": [
+        "Pour changer les câbles",
+        "Pour protéger les données, les utilisateurs et les équipements contre les attaques",
+        "Pour augmenter la mémoire des ordinateurs",
+        "Pour installer les applications plus rapidement"
+      ],
+      "reponse_correcte": "Pour protéger les données, les utilisateurs et les équipements contre les attaques"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 41,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Qu'est-ce qu'une base de données ?",
+      "choix": [
+        "Un système d'exploitation",
+        "Un ensemble organisé de données permettant leur stockage et leur gestion",
+        "Un langage de programmation",
+        "Un navigateur Web"
+      ],
+      "reponse_correcte": "Un ensemble organisé de données permettant leur stockage et leur gestion"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 42,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Que signifie le sigle SGBD ?",
+      "choix": [
+        "Système Général de Bases de Données",
+        "Système de Gestion de Bases de Données",
+        "Serveur de Gestion des Données",
+        "Structure Générale des Bases"
+      ],
+      "reponse_correcte": "Système de Gestion de Bases de Données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 43,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quel est le principal rôle d'un SGBD ?",
+      "choix": [
+        "Compiler un programme",
+        "Gérer les bases de données et les accès aux données",
+        "Dessiner des interfaces",
+        "Créer des systèmes d'exploitation"
+      ],
+      "reponse_correcte": "Gérer les bases de données et les accès aux données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 44,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quel langage est principalement utilisé pour interroger une base de données relationnelle ?",
+      "choix": [
+        "Python",
+        "Java",
+        "SQL",
+        "PHP"
+      ],
+      "reponse_correcte": "SQL"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 45,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Que signifie SQL ?",
+      "choix": [
+        "Simple Query Language",
+        "Structured Query Language",
+        "Standard Question Language",
+        "System Query Language"
+      ],
+      "reponse_correcte": "Structured Query Language"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 46,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle commande SQL permet de récupérer des données ?",
+      "choix": [
+        "INSERT",
+        "DELETE",
+        "SELECT",
+        "UPDATE"
+      ],
+      "reponse_correcte": "SELECT"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 47,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle commande SQL permet d'ajouter un nouvel enregistrement ?",
+      "choix": [
+        "ADD",
+        "CREATE",
+        "INSERT INTO",
+        "APPEND"
+      ],
+      "reponse_correcte": "INSERT INTO"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 48,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle commande SQL permet de modifier des données existantes ?",
+      "choix": [
+        "CHANGE",
+        "MODIFY",
+        "UPDATE",
+        "ALTER"
+      ],
+      "reponse_correcte": "UPDATE"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 49,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle commande SQL permet de supprimer des enregistrements ?",
+      "choix": [
+        "REMOVE",
+        "DELETE",
+        "DROP",
+        "CLEAR"
+      ],
+      "reponse_correcte": "DELETE"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 50,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle commande SQL permet de créer une nouvelle table ?",
+      "choix": [
+        "NEW TABLE",
+        "MAKE TABLE",
+        "CREATE TABLE",
+        "ADD TABLE"
+      ],
+      "reponse_correcte": "CREATE TABLE"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 51,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Qu'est-ce qu'une clé primaire ?",
+      "choix": [
+        "Une clé qui chiffre les données",
+        "Un identifiant unique de chaque enregistrement",
+        "Une clé de sécurité",
+        "Une clé servant à supprimer une table"
+      ],
+      "reponse_correcte": "Un identifiant unique de chaque enregistrement"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 52,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Une clé primaire peut-elle contenir des valeurs NULL ?",
+      "choix": [
+        "Oui",
+        "Non",
+        "Seulement une fois",
+        "Seulement dans Oracle"
+      ],
+      "reponse_correcte": "Non"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 53,
+    "fields": {
+      "quiz": 3,
+      "enonce": "À quoi sert une clé étrangère ?",
+      "choix": [
+        "À chiffrer les données",
+        "À relier deux tables entre elles",
+        "À supprimer des données",
+        "À créer des utilisateurs"
+      ],
+      "reponse_correcte": "À relier deux tables entre elles"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 54,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle propriété garantit qu'une clé primaire est unique ?",
+      "choix": [
+        "Redondance",
+        "Unicité",
+        "Compression",
+        "Héritage"
+      ],
+      "reponse_correcte": "Unicité"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 55,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Qu'est-ce qu'une relation \"Un à Plusieurs\" (1:N) ?",
+      "choix": [
+        "Un enregistrement est lié à plusieurs enregistrements d'une autre table",
+        "Plusieurs enregistrements sont liés à un seul champ",
+        "Toutes les tables sont reliées",
+        "Une table contient une seule colonne"
+      ],
+      "reponse_correcte": "Un enregistrement est lié à plusieurs enregistrements d'une autre table"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 56,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quel symbole est utilisé pour sélectionner toutes les colonnes ?",
+      "choix": [
+        "%",
+        "#",
+        "*",
+        "@"
+      ],
+      "reponse_correcte": "*"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 57,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle clause permet de filtrer les résultats d'une requête ?",
+      "choix": [
+        "ORDER BY",
+        "WHERE",
+        "GROUP BY",
+        "LIMIT"
+      ],
+      "reponse_correcte": "WHERE"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 58,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Quelle clause permet de trier les résultats ?",
+      "choix": [
+        "SORT",
+        "FILTER",
+        "ORDER BY",
+        "GROUP"
+      ],
+      "reponse_correcte": "ORDER BY"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 59,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Qu'est-ce que la redondance des données ?",
+      "choix": [
+        "Une sauvegarde automatique",
+        "La répétition inutile des mêmes informations",
+        "Une relation entre deux tables",
+        "Une clé étrangère"
+      ],
+      "reponse_correcte": "La répétition inutile des mêmes informations"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 60,
+    "fields": {
+      "quiz": 3,
+      "enonce": "Pourquoi normalise-t-on une base de données ?",
+      "choix": [
+        "Pour augmenter la taille de la base",
+        "Pour réduire la redondance et améliorer la cohérence des données",
+        "Pour ralentir les requêtes",
+        "Pour supprimer toutes les clés étrangères"
+      ],
+      "reponse_correcte": "Pour réduire la redondance et améliorer la cohérence des données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 61,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Qu'est-ce que l'Intelligence Artificielle (IA) ?",
+      "choix": [
+        "Une base de données",
+        "Une discipline informatique qui vise à créer des systèmes capables d'imiter certaines capacités humaines",
+        "Un système d'exploitation",
+        "Un navigateur Internet"
+      ],
+      "reponse_correcte": "Une discipline informatique qui vise à créer des systèmes capables d'imiter certaines capacités humaines"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 62,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel est l'objectif principal de l'IA ?",
+      "choix": [
+        "Augmenter la mémoire des ordinateurs",
+        "Permettre aux machines d'accomplir des tâches nécessitant normalement l'intelligence humaine",
+        "Remplacer les réseaux informatiques",
+        "Développer uniquement des robots"
+      ],
+      "reponse_correcte": "Permettre aux machines d'accomplir des tâches nécessitant normalement l'intelligence humaine"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 63,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Lequel des domaines suivants fait partie de l'IA ?",
+      "choix": [
+        "Traitement du langage naturel (NLP)",
+        "Installation de Windows",
+        "Gestion des imprimantes",
+        "Compression des fichiers"
+      ],
+      "reponse_correcte": "Traitement du langage naturel (NLP)"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 64,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Qu'est-ce que le Machine Learning ?",
+      "choix": [
+        "Une méthode permettant aux machines d'apprendre à partir des données sans être explicitement programmées",
+        "Un logiciel antivirus",
+        "Un système de stockage",
+        "Une base de données"
+      ],
+      "reponse_correcte": "Une méthode permettant aux machines d'apprendre à partir des données sans être explicitement programmées"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 65,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Le Deep Learning est basé principalement sur :",
+      "choix": [
+        "Les réseaux sociaux",
+        "Les réseaux de neurones artificiels",
+        "Les bases de données",
+        "Les systèmes d'exploitation"
+      ],
+      "reponse_correcte": "Les réseaux de neurones artificiels"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 66,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Le test de Turing sert à :",
+      "choix": [
+        "Tester un disque dur",
+        "Évaluer si une machine peut imiter le comportement intelligent d'un humain",
+        "Mesurer la vitesse d'un processeur",
+        "Vérifier une connexion Internet"
+      ],
+      "reponse_correcte": "Évaluer si une machine peut imiter le comportement intelligent d'un humain"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 67,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Qui est considéré comme le père du test de Turing ?",
+      "choix": [
+        "John McCarthy",
+        "Alan Turing",
+        "Geoffrey Hinton",
+        "Andrew Ng"
+      ],
+      "reponse_correcte": "Alan Turing"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 68,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Lequel est un exemple d'application de l'IA ?",
+      "choix": [
+        "Les assistants vocaux (Siri, Alexa, Google Assistant)",
+        "Une clé USB",
+        "Un câble réseau",
+        "Une imprimante"
+      ],
+      "reponse_correcte": "Les assistants vocaux (Siri, Alexa, Google Assistant)"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 69,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Qu'est-ce qu'un agent intelligent ?",
+      "choix": [
+        "Un utilisateur informatique",
+        "Un système capable de percevoir son environnement et d'agir pour atteindre un objectif",
+        "Un antivirus",
+        "Un serveur Web"
+      ],
+      "reponse_correcte": "Un système capable de percevoir son environnement et d'agir pour atteindre un objectif"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 70,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quelle est la matière première du Machine Learning ?",
+      "choix": [
+        "Les données",
+        "Les câbles",
+        "Les imprimantes",
+        "Les routeurs"
+      ],
+      "reponse_correcte": "Les données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 71,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Lequel est un langage très utilisé en Intelligence Artificielle ?",
+      "choix": [
+        "HTML",
+        "Python",
+        "CSS",
+        "XML"
+      ],
+      "reponse_correcte": "Python"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 72,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Que signifie NLP ?",
+      "choix": [
+        "Network Learning Process",
+        "Natural Language Processing",
+        "Neural Logic Program",
+        "Numeric Language Processor"
+      ],
+      "reponse_correcte": "Natural Language Processing"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 73,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel type d'apprentissage utilise des données étiquetées ?",
+      "choix": [
+        "Apprentissage supervisé",
+        "Apprentissage non supervisé",
+        "Apprentissage par renforcement",
+        "Apprentissage manuel"
+      ],
+      "reponse_correcte": "Apprentissage supervisé"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 74,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel type d'apprentissage recherche des groupes dans les données sans étiquettes ?",
+      "choix": [
+        "Supervisé",
+        "Non supervisé",
+        "Profond",
+        "Symbolique"
+      ],
+      "reponse_correcte": "Non supervisé"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 75,
+    "fields": {
+      "quiz": 4,
+      "enonce": "L'apprentissage par renforcement repose principalement sur :",
+      "choix": [
+        "Des récompenses et des pénalités",
+        "Des tables SQL",
+        "Des fichiers PDF",
+        "Des images uniquement"
+      ],
+      "reponse_correcte": "Des récompenses et des pénalités"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 76,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Lequel est un exemple de réseau de neurones ?",
+      "choix": [
+        "CNN (Convolutional Neural Network)",
+        "FTP",
+        "HTTP",
+        "DNS"
+      ],
+      "reponse_correcte": "CNN (Convolutional Neural Network)"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 77,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel est l'un des principaux défis de l'IA ?",
+      "choix": [
+        "La qualité des données",
+        "La couleur des ordinateurs",
+        "Le type de clavier",
+        "La taille de l'écran"
+      ],
+      "reponse_correcte": "La qualité des données"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 78,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel domaine de l'IA permet à un ordinateur de reconnaître des objets dans une image ?",
+      "choix": [
+        "Vision par ordinateur (Computer Vision)",
+        "Réseau informatique",
+        "Administration système",
+        "SQL"
+      ],
+      "reponse_correcte": "Vision par ordinateur (Computer Vision)"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 79,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel est l'avantage principal de l'IA ?",
+      "choix": [
+        "Automatiser des tâches complexes et améliorer la prise de décision",
+        "Augmenter la taille des disques durs",
+        "Réduire la vitesse des ordinateurs",
+        "Remplacer Internet"
+      ],
+      "reponse_correcte": "Automatiser des tâches complexes et améliorer la prise de décision"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 80,
+    "fields": {
+      "quiz": 4,
+      "enonce": "Quel est le rôle d'un modèle d'IA après son entraînement ?",
+      "choix": [
+        "Éteindre l'ordinateur",
+        "Faire des prédictions ou prendre des décisions à partir de nouvelles données",
+        "Installer un système d'exploitation",
+        "Créer des bases de données"
+      ],
+      "reponse_correcte": "Faire des prédictions ou prendre des décisions à partir de nouvelles données"
+    }
+  }
+]
