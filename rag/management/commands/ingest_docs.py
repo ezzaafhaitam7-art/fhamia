@@ -50,26 +50,35 @@ class Command(BaseCommand):
             self.stdout.write(f"Lecture de {path.name}…")
             reader = PdfReader(str(path))
 
+            # Traitement et upsert page par lot, sans jamais garder tout le
+            # PDF en mémoire d'un coup : nécessaire pour tenir dans les 512 Mo
+            # de RAM d'un hébergeur gratuit (Render).
+            batch_size = 20
             ids, docs, metas = [], [], []
+            total = 0
+
+            def flush():
+                nonlocal ids, docs, metas
+                if docs:
+                    collection.upsert(ids=ids, documents=docs, metadatas=metas)
+                    ids, docs, metas = [], [], []
+
             for page_num, page in enumerate(reader.pages, start=1):
                 text = page.extract_text() or ""
                 for chunk in chunk_text(text):
                     ids.append(str(uuid.uuid4()))
                     docs.append(chunk)
                     metas.append({"domain": domain, "source": path.name, "page": page_num})
+                    total += 1
+                    if len(docs) >= batch_size:
+                        flush()
+                del text
+            flush()
 
-            if not docs:
+            if total == 0:
                 self.stdout.write(self.style.WARNING(f"Aucun texte extrait de {path.name}."))
                 continue
 
-            batch_size = 100
-            for i in range(0, len(docs), batch_size):
-                collection.upsert(
-                    ids=ids[i : i + batch_size],
-                    documents=docs[i : i + batch_size],
-                    metadatas=metas[i : i + batch_size],
-                )
-
-            self.stdout.write(self.style.SUCCESS(f"{len(docs)} passages indexés pour {domain} ({path.name})."))
+            self.stdout.write(self.style.SUCCESS(f"{total} passages indexés pour {domain} ({path.name})."))
 
         self.stdout.write(self.style.SUCCESS("Ingestion terminée."))
