@@ -200,6 +200,9 @@ CHROMA_PERSIST_DIR = str(BASE_DIR / 'chroma_data')
 CHROMA_COLLECTION_NAME = 'fhamia_docs'
 
 EMBEDDING_MODEL = os.environ.get('EMBEDDING_MODEL', 'paraphrase-multilingual-MiniLM-L12-v2')
+# 'sentence-transformer' (défaut, local) ou 'onnx' (léger, pour les hébergeurs
+# à RAM limitée comme le tier gratuit Render).
+EMBEDDING_BACKEND = os.environ.get('EMBEDDING_BACKEND', 'sentence-transformer')
 
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
 OLLAMA_MODEL = os.environ.get('OLLAMA_MODEL', 'llama3.2:1b')
