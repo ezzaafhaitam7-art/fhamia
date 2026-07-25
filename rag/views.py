@@ -91,10 +91,11 @@ def query_stream_view(request):
         # meilleur résultat que de faire générer le texte en darija
         # directement (les modèles, même spécialisés, y sont peu fiables).
         retrieval_query = translate_to_french(question) if darija else question
-        try:
-            chunks = retrieve(retrieval_query, top_k=1)
-        except Exception as exc:
-            return JsonResponse({"error": str(exc)}, status=500)
+        if settings.RAG_ENABLED:
+            try:
+                chunks = retrieve(retrieval_query, top_k=1)
+            except Exception as exc:
+                return JsonResponse({"error": str(exc)}, status=500)
     else:
         retrieval_query = question
 

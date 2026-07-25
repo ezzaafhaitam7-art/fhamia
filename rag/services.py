@@ -77,6 +77,8 @@ def chat_system_prompt(darija):
 
 
 def retrieve(question, top_k=3):
+    if not settings.RAG_ENABLED:
+        return []
     with _CHROMA_LOCK:
         collection = get_collection()
         results = collection.query(query_texts=[question], n_results=top_k)

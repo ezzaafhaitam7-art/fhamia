@@ -203,6 +203,12 @@ EMBEDDING_MODEL = os.environ.get('EMBEDDING_MODEL', 'paraphrase-multilingual-Min
 # 'sentence-transformer' (défaut, local) ou 'onnx' (léger, pour les hébergeurs
 # à RAM limitée comme le tier gratuit Render).
 EMBEDDING_BACKEND = os.environ.get('EMBEDDING_BACKEND', 'sentence-transformer')
+# Désactive la recherche RAG (ChromaDB + modèle d'embeddings) : utile sur un
+# hébergeur à RAM très limitée (ex: tier gratuit Render, 512 Mo) où charger un
+# modèle d'embeddings en plus de Django fait planter le serveur (OOM). Le
+# tuteur répond alors avec ses connaissances générales (Groq), sans s'appuyer
+# sur le contenu exact des PDF de cours.
+RAG_ENABLED = os.environ.get('RAG_ENABLED', 'True') == 'True'
 
 OLLAMA_BASE_URL = os.environ.get('OLLAMA_BASE_URL', 'http://localhost:11434')
 OLLAMA_MODEL = os.environ.get('OLLAMA_MODEL', 'llama3.2:1b')
